@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎬 TubeSearch Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>IncogTube</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,550 +13,705 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #fff;
-            overflow-x: hidden;
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #272727;
+            --accent-purple: #a855f7;
+            --accent-purple-hover: #9333ea;
+            --accent-purple-light: #c084fc;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --text-tertiary: #717171;
+            --border-color: #303030;
+            --hover-bg: #2f2f2f;
         }
 
-        /* Animación de fondo */
-        .bg-animation {
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* Header estilo YouTube */
+        header {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            right: 0;
+            height: 56px;
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveGrid 20s linear infinite;
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
-        @keyframes moveGrid {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
         }
 
-        /* Header */
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            position: relative;
+        .menu-btn:hover {
+            background-color: var(--hover-bg);
         }
 
         .logo {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 5s ease infinite;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(255,255,255,0.3);
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        /* Contenedor principal */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 40px;
-        }
-
-        /* Barra de búsqueda */
-        .search-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .search-box {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 2px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #7c3aed 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 4px;
+        }
+
+        .logo-icon span {
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-accent {
+            color: var(--accent-purple-light);
+        }
+
+        .search-section {
+            flex: 1;
+            max-width: 640px;
+            margin: 0 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 40px;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px 0 0 20px;
+            padding: 0 16px;
+            height: 100%;
+            transition: all 0.2s;
+        }
+
+        .search-input-wrapper:focus-within {
+            border-color: var(--accent-purple);
+        }
+
+        .search-icon-left {
+            color: var(--text-tertiary);
+            margin-right: 8px;
+            font-size: 18px;
         }
 
         .search-input {
             flex: 1;
-            min-width: 250px;
-            padding: 18px 25px;
             border: none;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
-            font-size: 1.1rem;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 16px;
             outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-family: 'Roboto', sans-serif;
         }
 
-        .search-input:focus {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        .search-input::placeholder {
+            color: var(--text-tertiary);
         }
 
         .search-btn {
-            padding: 18px 35px;
-            border: none;
-            border-radius: 15px;
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-        }
-
-        .search-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
-        }
-
-        .search-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Reproductor principal */
-        .player-section {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .player-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .player-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        .player-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            width: 64px;
             height: 100%;
-            border: none;
-        }
-
-        .video-info {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-        }
-
-        .video-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .video-meta {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        /* Grid de resultados */
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .video-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
+            border: 1px solid var(--border-color);
+            border-left: none;
+            border-radius: 0 20px 20px 0;
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        .video-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .video-card::before {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 107, 107, 0.9);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            transition: all 0.3s ease;
-            z-index: 10;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: background 0.2s;
         }
 
-        .video-card:hover::before {
-            transform: translate(-50%, -50%) scale(1);
+        .search-btn:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .mic-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            margin-left: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .mic-btn:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .icon-btn:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #7c3aed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+        /* Layout principal */
+        .main-container {
+            display: flex;
+            margin-top: 56px;
+            min-height: calc(100vh - 56px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background-color: var(--bg-primary);
+            padding: 12px;
+            position: fixed;
+            left: 0;
+            top: 56px;
+            bottom: 0;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .nav-section {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .nav-item:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .nav-item.active {
+            background-color: var(--hover-bg);
+            font-weight: 500;
+        }
+
+        .nav-item span.material-symbols-rounded {
+            font-size: 24px;
+            color: var(--text-primary);
+        }
+
+        .nav-section-title {
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        /* Contenido principal */
+        .content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 24px;
+            background-color: var(--bg-primary);
+        }
+
+        /* Chips de categorías */
+        .chips-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .chip {
+            padding: 6px 12px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .chip:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .chip.active {
+            background-color: var(--text-primary);
+            color: var(--bg-primary);
+            border-color: var(--text-primary);
+        }
+
+        /* Grid de videos */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .video-card {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .video-card:hover {
+            transform: scale(1.02);
+        }
+
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--bg-secondary);
         }
 
         .thumbnail {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
         }
 
         .video-card:hover .thumbnail {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
-        .card-content {
-            padding: 20px;
+        .video-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
         }
 
-        .card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .video-info {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .channel-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #7c3aed 100%);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .video-meta {
+            flex: 1;
+        }
+
+        .video-title {
+            font-size: 16px;
+            font-weight: 500;
             line-height: 1.4;
+            margin-bottom: 4px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            color: var(--text-primary);
         }
 
-        .card-channel {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
+        .video-channel {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .video-stats {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Reproductor modal */
+        .player-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.95);
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .player-modal.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .player-container {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16/9;
+            position: relative;
+        }
+
+        .player-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .close-player {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .close-player:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .player-info {
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+        }
+
+        .player-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .player-channel {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 13px;
+        }
+
+        .footer-brand {
+            color: var(--accent-purple-light);
+            font-weight: 500;
         }
 
         /* Loading */
         .loading {
-            text-align: center;
-            padding: 40px;
             display: none;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
         }
 
         .loading.active {
-            display: block;
+            display: flex;
         }
 
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top-color: #ff6b6b;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-purple);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* Mensaje de error/info */
-        .message {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .message-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-
-        .heart {
-            color: #ff6b6b;
-            animation: heartbeat 1.5s ease infinite;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
         /* Responsive */
+        @media (max-width: 1200px) {
+            .videos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2rem;
+            .sidebar {
+                display: none;
             }
             
-            .search-box {
-                flex-direction: column;
+            .content {
+                margin-left: 0;
             }
             
-            .search-input, .search-btn {
-                width: 100%;
+            .search-section {
+                margin: 0 16px;
             }
             
-            .results-grid {
+            .videos-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Scrollbar personalizada */
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
+            height: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--bg-primary);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.5);
+            background: #444;
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    
+    <!-- Header -->
     <header>
-        <h1 class="logo">🎬 TubeSearch Pro</h1>
-        <p class="subtitle">Busca y reproduce videos de YouTube al instante</p>
-    </header>
+        <div class="logo-section">
+            <button class="menu-btn">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+            <a href="#" class="logo" onclick="location.reload()">
+                <div class="logo-icon">
+                    <span class="material-symbols-rounded">play_arrow</span>
+                </div>
+                <div class="logo-text">
+                    Incog<span class="logo-accent">Tube</span>
+                </div>
+            </a>
+        </div>
 
-    <div class="container">
-        <!-- Buscador -->
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" class="search-input" id="searchInput" 
-                       placeholder="🔍 Busca videos, canales, música..." 
-                       onkeypress="if(event.key==='Enter') searchVideos()">
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <span class="material-symbols-rounded search-icon-left">search</span>
+                    <input type="text" class="search-input" id="searchInput" 
+                           placeholder="Buscar" 
+                           onkeypress="if(event.key==='Enter') searchVideos()">
+                </div>
                 <button class="search-btn" onclick="searchVideos()">
-                    🔎 Buscar
+                    <span class="material-symbols-rounded">search</span>
                 </button>
             </div>
+            <button class="mic-btn">
+                <span class="material-symbols-rounded">mic</span>
+            </button>
         </div>
 
-        <!-- Reproductor Principal -->
-        <div class="player-section" id="playerSection">
-            <div class="player-wrapper">
-                <iframe id="mainPlayer" allowfullscreen 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-                </iframe>
+        <div class="user-section">
+            <button class="icon-btn">
+                <span class="material-symbols-rounded">video_call</span>
+            </button>
+            <button class="icon-btn">
+                <span class="material-symbols-rounded">notifications</span>
+            </button>
+            <div class="user-avatar">C</div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="nav-section">
+                <div class="nav-item active">
+                    <span class="material-symbols-rounded">home</span>
+                    <span>Principal</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">play_circle</span>
+                    <span>Shorts</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">subscriptions</span>
+                    <span>Suscripciones</span>
+                </div>
             </div>
-            <div class="video-info">
-                <h2 class="video-title" id="currentTitle">Selecciona un video</h2>
-                <p class="video-meta" id="currentMeta">Reproduce cualquier video de los resultados</p>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Tú</div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">history</span>
+                    <span>Historial</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">playlist_play</span>
+                    <span>Playlists</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">smart_display</span>
+                    <span>Tus videos</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">schedule</span>
+                    <span>Ver más tarde</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">thumb_up</span>
+                    <span>Videos que te gustan</span>
+                </div>
             </div>
-        </div>
 
-        <!-- Loading -->
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>Buscando videos increíbles...</p>
-        </div>
-
-        <!-- Resultados -->
-        <div id="resultsContainer">
-            <div class="message">
-                <div class="message-icon">🎵</div>
-                <h3>¡Bienvenido a TubeSearch Pro!</h3>
-                <p>Escribe algo en la barra de búsqueda para encontrar videos</p>
+            <div class="nav-section">
+                <div class="nav-section-title">Explorar</div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">local_fire_department</span>
+                    <span>Tendencias</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">music_note</span>
+                    <span>Música</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">sports_esports</span>
+                    <span>Videojuegos</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-rounded">emoji_events</span>
+                    <span>Deportes</span>
+                </div>
             </div>
-        </div>
-    </div>
+        </aside>
 
-    <footer>
-        <p>Hecho con <span class="heart">❤️</span> para GitHub Pages | No oficial de YouTube</p>
-    </footer>
-
-    <script>
-        // Base de datos de videos populares para demo (simulación)
-        const demoVideos = [
-            { id: 'dQw4w9WgXcQ', title: 'Rick Astley - Never Gonna Give You Up', channel: 'Rick Astley', views: '1.4B' },
-            { id: '9bZkp7q19f0', title: 'PSY - GANGNAM STYLE', channel: 'officialpsy', views: '4.9B' },
-            { id: 'kJQP7kiw5Fk', title: 'Luis Fonsi - Despacito ft. Daddy Yankee', channel: 'Luis Fonsi', views: '8.2B' },
-            { id: 'RgKAFK5djSk', title: 'Wiz Khalifa - See You Again ft. Charlie Puth', channel: 'Wiz Khalifa', views: '6.0B' },
-            { id: 'OPf0YbXqDm0', title: 'Mark Ronson - Uptown Funk ft. Bruno Mars', channel: 'Mark Ronson', views: '4.8B' },
-            { id: 'pRpeEdMmmQ0', title: 'Shakira - Waka Waka', channel: 'Shakira', views: '3.8B' },
-            { id: 'fJ9rUzIMcZQ', title: 'Queen - Bohemian Rhapsody', channel: 'Queen', views: '1.9B' },
-            { id: 'lp-EO5I60KA', title: 'Ed Sheeran - Thinking Out Loud', channel: 'Ed Sheeran', views: '3.6B' },
-            { id: '2Vv-BfVoq4g', title: 'Ed Sheeran - Perfect', channel: 'Ed Sheeran', views: '3.4B' },
-            { id: 'JGwWNGJdvx8', title: 'Ed Sheeran - Shape of You', channel: 'Ed Sheeran', views: '6.0B' },
-            { id: 'hT_nvWreIhg', title: 'OneRepublic - Counting Stars', channel: 'OneRepublic', views: '3.8B' },
-            { id: 'YqeW9_5kURI', title: 'Major Lazer & DJ Snake - Lean On', channel: 'Major Lazer', views: '3.4B' }
-        ];
-
-        let currentVideos = [];
-
-        function searchVideos() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (!query) {
-                alert('Por favor escribe algo para buscar');
-                return;
-            }
-
-            const loading = document.getElementById('loading');
-            const resultsContainer = document.getElementById('resultsContainer');
-            
-            loading.classList.add('active');
-            resultsContainer.innerHTML = '';
-
-            // Simulamos búsqueda con delay para efecto realista
-            setTimeout(() => {
-                // Filtramos videos que coincidan con la búsqueda
-                const filtered = demoVideos.filter(v => 
-                    v.title.toLowerCase().includes(query.toLowerCase()) ||
-                    v.channel.toLowerCase().includes(query.toLowerCase()) ||
-                    query.toLowerCase().includes('música') ||
-                    query.toLowerCase().includes('music') ||
-                    query.toLowerCase().includes('pop') ||
-                    query.toLowerCase().includes('rock')
-                );
-
-                // Si no hay coincidencias exactas, mostramos todos (para demo)
-                currentVideos = filtered.length > 0 ? filtered : demoVideos;
-                
-                // Agregamos videos relacionados con la búsqueda
-                if (query.toLowerCase().includes('programming') || query.toLowerCase().includes('código')) {
-                    currentVideos = [
-                        { id: 'qz0aGYrrlhU', title: 'JavaScript Tutorial for Beginners', channel: 'Programming with Mosh', views: '12M' },
-                        { id: 'PkZNo7MFNFg', title: 'Learn JavaScript - Full Course for Beginners', channel: 'freeCodeCamp', views: '15M' },
-                        { id: 'pQN-pnXPaVg', title: 'HTML Full Course - Build a Website Tutorial', channel: 'freeCodeCamp', views: '8M' }
-                    ];
-                } else if (query.toLowerCase().includes('tutorial') || query.toLowerCase().includes('learn')) {
-                    currentVideos = [
-                        { id: 'rfscVS0vtbw', title: 'Learn Python - Full Course for Beginners', channel: 'freeCodeCamp', views: '44M' },
-                        { id: 'GrOKrQ9ZcvU', title: 'Git and GitHub Tutorial for Beginners', channel: 'TechWorld with Nana', views: '2M' },
-                        { id: 'RGOj5yH8evw', title: 'SQL - Full Course for Beginners', channel: 'freeCodeCamp', views: '12M' }
-                    ];
-                }
-
-                displayResults(currentVideos);
-                loading.classList.remove('active');
-            }, 800);
-        }
-
-        function displayResults(videos) {
-            const container = document.getElementById('resultsContainer');
-            
-            if (videos.length === 0) {
-                container.innerHTML = `
-                    <div class="message">
-                        <div class="message-icon">😕</div>
-                        <h3>No se encontraron resultados</h3>
-                        <p>Intenta con otra búsqueda</p>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = '<div class="results-grid">' + 
-                videos.map((video, index) => `
-                    <div class="video-card" onclick="playVideo('${video.id}', '${video.title.replace(/'/g, "\\'")}', '${video.channel}')" style="animation: fadeIn 0.5s ease ${index * 0.1}s both;">
-                        <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" 
-                             alt="${video.title}" 
-                             class="thumbnail"
-                             onerror="this.src='https://via.placeholder.com/320x180/667eea/ffffff?text=Video+No+Disponible'">
-                        <div class="card-content">
-                            <h3 class="card-title">${video.title}</h3>
-                            <div class="card-channel">
-                                📺 ${video.channel} • 👁️ ${video.views} vistas
-                            </div>
-                        </div>
-                    </div>
-                `).join('') + 
-            '</div>';
-        }
-
-        function playVideo(videoId, title, channel) {
-            const playerSection = document.getElementById('playerSection');
-            const player = document.getElementById('mainPlayer');
-            const titleEl = document.getElementById('currentTitle');
-            const metaEl = document.getElementById('currentMeta');
-
-            playerSection.classList.add('active');
-            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-            
-            titleEl.textContent = title;
-            metaEl.textContent = `📺 ${channel} • Reproduciendo ahora`;
-            
-            // Scroll suave al reproductor
-            playerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        // Cargar videos iniciales al cargar la página
-        window.onload = () => {
-            document.getElementById('searchInput').focus();
-        };
-    </script>
-</body>
-</html>
+        <!-- Content -->
+        <main class="content">
+            <!-- Chips -->
+            <div class="chips-container">
+                <div class="chip active">Todos</div>
+                <div class="chip">Música</div>
+                <div class="chip">Programación</div>
+                <div class="chip">Videojuegos</div>
+                <div class="ch
