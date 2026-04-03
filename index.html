@@ -279,6 +279,7 @@
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s;
+            user-select: none;
         }
 
         .chip:hover {
@@ -297,6 +298,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
+            min-height: 400px;
         }
 
         .video-card {
@@ -498,6 +500,7 @@
             height: 200px;
             color: var(--text-secondary);
             font-size: 16px;
+            grid-column: 1 / -1;
         }
 
         .loading.active {
@@ -664,10 +667,10 @@
         <main class="content">
             <!-- Chips -->
             <div class="chips-container">
-                <div class="chip active" onclick="filterCategory('all')">Todos</div>
-                <div class="chip" onclick="filterCategory('música')">Música</div>
-                <div class="chip" onclick="filterCategory('programación')">Programación</div>
-                <div class="chip" onclick="filterCategory('videojuegos')">Videojuegos</div>
+                <div class="chip active" onclick="filterCategory('all', this)">Todos</div>
+                <div class="chip" onclick="filterCategory('música', this)">Música</div>
+                <div class="chip" onclick="filterCategory('programación', this)">Programación</div>
+                <div class="chip" onclick="filterCategory('videojuegos', this)">Videojuegos</div>
             </div>
 
             <!-- Loading -->
@@ -677,9 +680,7 @@
             </div>
 
             <!-- Videos Grid -->
-            <div class="videos-grid" id="videosGrid">
-                <!-- Videos se cargan aquí -->
-            </div>
+            <div class="videos-grid" id="videosGrid"></div>
 
             <!-- Footer -->
             <div class="footer">
@@ -705,9 +706,9 @@
     </div>
 
     <script>
-        // Base de datos de videos con IDs reales de YouTube
+        // Base de datos de videos
         const videoDatabase = [
             { id: 'dQw4w9WgXcQ', title: 'Rick Astley - Never Gonna Give You Up', channel: 'Rick Astley', views: '1.4B vistas', duration: '3:33', category: 'música' },
             { id: '9bZkp7q19f0', title: 'PSY - GANGNAM STYLE', channel: 'officialpsy', views: '4.9B vistas', duration: '4:12', category: 'música' },
             { id: 'kJQP7kiw5Fk', title: 'Luis Fonsi - Despacito ft. Daddy Yankee', channel: 'Luis Fonsi', views: '8.2B vistas', duration: '4:41', category: 'música' },
-            { id: 'RgKAFK5djSk', title: 'Wiz Khalifa - See You Again ft. Charlie Puth', channel: 'Wiz Khalifa', views: '6.0B vistas', duration: '3:57', category: 'mú
+            { id: 'RgKAFK5djSk', title: 'Wiz Khalifa - See You Again ft. Charlie Puth', channel: 'Wiz Khalifa', views: '6.0B vistas'
